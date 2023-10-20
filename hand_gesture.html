@@ -1,80 +1,104 @@
 <!DOCTYPE HTML>
-<!--
-	TEST by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
-	<head>
-		<title>Hand Gesture</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+    <title>Hand Gesture</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <div id="wrapper">
+        <header id="header">
+            <a href="index.html" class="logo">Notify Me</a>
+        </header>
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Notify Me</a>
-					</header>
+        <nav id="nav">
+            <ul class="links">
+                <li><a href="index.html">Project Page</a></li>
+                <li><a href="generic.html">Project Creators</a></li>
+                <li><a href="elements.html">Project Documents</a></li>
+                <li class="active"><a href="hand_gesture.html">Hand Gesture</a></li>
+            </ul>
+            <ul class="icons">
+                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+            </ul>
+        </nav>
 
-				<!-- Nav -->
-                <nav id="nav">
-                    <ul class="links">
-                        <li><a href="index.html">Project Page</a></li>
-                        <li><a href="generic.html">Project Creators</a></li>
-                        <li class="active"><a href="elements.html">Project Documents</a></li>
-                        <li class="active"><a href="hand_gesture.html">Hand Gesture</a></li>
+        <div id="main">
+            <video id="videoElement" autoplay></video>
+            <canvas id="canvas" width="640" height="480"></canvas>
+            <p id="outputText"></p>
 
-                    </ul>
-                    <ul class="icons">
-                        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </nav>
+            <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/2.0.0/tf.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                const videoElement = document.getElementById("videoElement");
+                const canvas = document.getElementById("canvas");
+                const outputText = document.getElementById("outputText");
 
-            <!-- Main -->
-                <div id="main">
+                const hands = new Hands({ locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}` });
 
-                    <body>
-                        <video id="videoElement" autoplay></video>
-                        
-                        <script>
-                            navigator.mediaDevices.getUserMedia({ video: true })
-                                .then(function(stream) {
-                                    var video = document.getElementById("videoElement");
-                                    video.srcObject = stream;
-                                })
-                                .catch(function(error) {
-                                    console.log("Error accessing camera: " + error);
-                                });
-                        </script>
-                    </body>
+                hands.setOptions({
+                    maxNumHands: 1,  // Set the maximum number of hands to detect
+                });
 
+                function startCamera() {
+                    navigator.mediaDevices.getUserMedia({ video: true })
+                        .then((stream) => {
+                            videoElement.srcObject = stream;
+                        })
+                        .catch((error) => {
+                            console.log("Error accessing camera: " + error);
+                        });
+                }
 
-                        
+                function detectHands() {
+                    hands.onResults((results) => {
+                        const handLandmarks = results.multiHandLandmarks[0]; // Assuming only one hand is detected
 
-            <!-- Copyright -->
-                <div id="copyright">
-                    <ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-                </div>
+                        if (handLandmarks) {
+                            // Process hand landmarks here
+                            // Update outputText with your logic (e.g., display detected signs)
+                            outputText.textContent = "Detected: Sign A";
+                        } else {
+                            outputText.textContent = "No hand detected";
+                        }
 
+                        // Draw hand landmarks on the canvas
+                        drawHandLandmarks(handLandmarks);
+                    });
+                }
+
+                function drawHandLandmarks(handLandmarks) {
+                    const ctx = canvas.getContext("2d");
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    // Draw hand landmarks here
+                }
+
+                startCamera();
+                hands.initialize();
+                detectHands();
+            </script>
         </div>
 
-    <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+        <div id="copyright">
+            <ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+        </div>
+    </div>
 
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
