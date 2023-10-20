@@ -79,8 +79,24 @@
                 function drawHandLandmarks(handLandmarks) {
                     const ctx = canvas.getContext("2d");
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    // Draw hand landmarks here
+                
+                    if (handLandmarks) {
+                        console.log("Drawing hand landmarks:", handLandmarks); // Debug
+                
+                        handLandmarks.forEach((landmark) => {
+                            const [x, y] = [landmark.x * canvas.width, landmark.y * canvas.height];
+                            console.log("Drawing point at:", x, y); // Debug
+                
+                            ctx.beginPath();
+                            ctx.arc(x, y, 5, 0, 2 * Math.PI, false);
+                            ctx.fillStyle = "red";
+                            ctx.fill();
+                            ctx.strokeStyle = "black";
+                            ctx.stroke();
+                        });
+                    }
                 }
+                
 
                 startCamera();
                 hands.initialize();
