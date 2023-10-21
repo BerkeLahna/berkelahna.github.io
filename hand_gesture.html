@@ -14,7 +14,7 @@
 
     <!-- Header -->
     <header id="header">
-        <a href="index.html" class="logo">Notify Me</a>
+        <a href="hand_gesture.html" class="logo">Try It</a>
     </header>
 
     <!-- Nav -->
@@ -26,17 +26,14 @@
             <li class="active"><a href="hand_gesture.html">Hand Gesture</a></li>
         </ul>
         <ul class="icons">
-            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="https://github.com/BerkeLahna/berkelahna.github.io" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
         </ul>
     </nav>
 
     <!-- Main -->
     <div id="main">
         <div style="width: 100%; max-width: 1600px; max-height: 1000px; margin: 0 auto;">
-            <video id="videoElement" autoplay style="width: 100%; height: 100%;"></video>
+            <video id="videoElement" autoplay style="width: 100%; height: 100%;" src=""></video>
             <div id="prediction"></div> <!-- Add a div to display predictions -->
         </div>
 
@@ -49,23 +46,33 @@
                     video.srcObject = stream;
 
                     // Load your model and make predictions here
-                    const modelURL = 'model/model.json'; // Replace with the correct URL to your model.json file
-                    const weightsURL = 'model/model_weights.bin'; // Replace with the correct URL to your model_weights.bin file
+                    const modelURL = 'model.json'; // Replace with the correct URL to your model.json file
+                    const weightsURL = 'model.h5'; // Replace with the correct URL to your model_weights.bin file
 
                     async function loadModel() {
-                        const model = await tf.loadGraphModel(model.json);
-                        await model.loadWeights(model.h5);
+                        const model = await tf.loadGraphModel(modelURL);
+                        await model.loadWeights(weightsURL);
                         return model;
                     }
 
                     async function predict() {
                         const model = await loadModel();
-                        
-                        // Continue with prediction code here
+
+                        // Capture the current video frame
+                        const image = tf.browser.fromPixels(video);
+
+                        // Preprocess the image if necessary (e.g., resize, normalize)
+
+                        // Make predictions
+                        const predictions = model.predict(image);
 
                         // Display predictions on the webpage
                         const predictionElement = document.getElementById('prediction');
-                        predictionElement.innerText = 'Predictions go here';
+                        predictionElement.innerText = predictions.dataSync(); // Display predictions on the page
+
+                        // Clean up the tensors
+                        image.dispose();
+                        predictions.dispose();
 
                         // Loop for continuous prediction (call predict function in requestAnimationFrame)
                         requestAnimationFrame(predict);
