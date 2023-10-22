@@ -2706,11 +2706,16 @@ input, select, textarea {
     align-items: center;
     justify-content: center;
     transform: rotateY(0deg);
+	
 }
 
 .card-back {
     background: #eeeeee;
     display: flex;
+	border: 1px solid black;
+
+	border-radius: 50%; /* Make it a circle */
+
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -2728,7 +2733,7 @@ input, select, textarea {
     color: #000000;
     text-decoration: none;
     margin: 5px;
-    font-size: 16px;
+    font-size: 32px;
 }
 
 .social-links a:hover {
