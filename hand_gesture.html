@@ -38,8 +38,15 @@
         <div id="label-container" style="padding-left: 30%;"></div> -->
         <article class="post featured">
 
+            <div id = "spinnerContainer" >
+            <div id="spinnertext"> Loading...</div>
+                <div class="spinner"></div>
+           </div>
+
         <div id="videoElement"></div>
+
         <div id="label-container"></div>
+
         </article>
 
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
@@ -74,10 +81,14 @@
         
                 // append elements to the DOM
                 document.getElementById("videoElement").appendChild(webcam.canvas);
+
+                document.getElementById("spinnerContainer").style.display = "none";
+
                 labelContainer = document.getElementById("label-container");
                 for (let i = 0; i < maxPredictions; i++) { // and class labels
                     labelContainer.appendChild(document.createElement("div"));
                 }
+                
             }
         
             async function loop() {
@@ -118,8 +129,9 @@
             labelContainer.childNodes[0].innerHTML = mostLikelyPrediction;
         }
         
-        
         document.addEventListener("DOMContentLoaded", init);
+        
+        
 
         </script>
 
