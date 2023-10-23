@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .inner {
+        width: 800px;
+        height: 200px;
+        overflow: hidden;
+      }
+      
+      .images-wrapper {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-animation: slideToLeft 100s ease infinite;
+        animation: slideToLeft 100s ease infinite;
+        animation-delay: 0s;
+      }
+      
+      @keyframes slideToLeft {
+        0%, 5.26% {
+          -webkit-transform: translateX(0);
+          transform: translateX(0);
+        }
+        5.26%, 10.53% {
+          -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+        }
+        10.53%, 15.79% {
+          -webkit-transform: translateX(-200%);
+          transform: translateX(-200%);
+        }
+        15.79%, 21.05% {
+          -webkit-transform: translateX(-300%);
+          transform: translateX(-300%);
+        }
+        21.05%, 26.32% {
+          -webkit-transform: translateX(-400%);
+          transform: translateX(-400%);
+        }
+        26.32%, 31.58% {
+          -webkit-transform: translateX(-500%);
+          transform: translateX(-500%);
+        }
+        31.58%, 36.84% {
+          -webkit-transform: translateX(-600%);
+          transform: translateX(-600%);
+        }
+        36.84%, 42.11% {
+          -webkit-transform: translateX(-700%);
+          transform: translateX(-700%);
+        }
+        42.11%, 47.37% {
+          -webkit-transform: translateX(-800%);
+          transform: translateX(-800%);
+        }
+        47.37%, 52.63% {
+          -webkit-transform: translateX(-900%);
+          transform: translateX(-900%);
+        }
+        52.63%, 57.89% {
+          -webkit-transform: translateX(-1000%);
+          transform: translateX(-1000%);
+        }
+        57.89%, 63.16% {
+          -webkit-transform: translateX(-1100%);
+          transform: translateX(-1100%);
+        }
+        63.16%, 68.42% {
+          -webkit-transform: translateX(-1200%);
+          transform: translateX(-1200%);
+        }
+        68.42%, 73.68% {
+          -webkit-transform: translateX(-1300%);
+          transform: translateX(-1300%);
+        }
+        73.68%, 78.95% {
+          -webkit-transform: translateX(-1400%);
+          transform: translateX(-1400%);
+        }
+        78.95%, 84.21% {
+          -webkit-transform: translateX(-1500%);
+          transform: translateX(-1500%);
+        }
+        84.21%, 89.47% {
+          -webkit-transform: translateX(-1600%);
+          transform: translateX(-1600%);
+        }
+        89.47%, 94.74% {
+          -webkit-transform: translateX(-1700%);
+          transform: translateX(-1700%);
+        }
+        94.74%, 100% {
+          -webkit-transform: translateX(-1800%);
+          transform: translateX(-1800%);
+        }
+      }
+      
+      
+      
+        
+      
+      .image-name {
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    .image-container {
+        position: relative;
+        display: inline-block;
+    }
+  </style>
+</head>
+<body>
+    <div class="inner">
+     <div class="images-wrapper"id="parent-container">
+        <script>
+
+// Define the parent container where you want to append these elements
+const parentContainer = document.getElementById("parent-container"); // Replace "parent-container" with the actual ID of the parent container in your HTML.
+
+// Number of elements you want to create
+const characters = [...Array(10).keys()].map(String).concat([...Array(26).keys()].map((i) => String.fromCharCode(65 + i)));
+
+for (i = 0; i < 2; i++) {
+
+for (const character of characters) {
+        // Create the main div element with the "image-container" class
+        const imageContainer = document.createElement("div");
+        imageContainer.classList.add("image-container");
+
+        // Create the image element
+        const image = document.createElement("img");
+        image.src = `sign language images/${character}.jpg`; // Check the file path here
+        image.alt = "";
+        image.width = 200;
+        image.height = 200;
+
+        // Create the paragraph element with the "image-name" class
+        const imageName = document.createElement("p");
+        imageName.classList.add("image-name");
+        imageName.textContent = character;
+
+        // Append the image and paragraph elements to the main div
+        imageContainer.appendChild(image);
+        imageContainer.appendChild(imageName);
+
+        // Append the main div to the parent container
+        parentContainer.appendChild(imageContainer);
+        }
+    }
+    for (i = 0; i < 2; i++) {
+
+
+        const imageContainer = document.createElement("div");
+        imageContainer.classList.add("image-container");
+
+        // Create the image element
+        const image = document.createElement("img");
+        image.src = `sign language images/${i}.jpg`; // Check the file path here
+        image.alt = "";
+        image.width = 200;
+        image.height = 200;
+
+        // Create the paragraph element with the "image-name" class
+        const imageName = document.createElement("p");
+        imageName.classList.add("image-name");
+        imageName.textContent = i;
+
+        // Append the image and paragraph elements to the main div
+        imageContainer.appendChild(image);
+        imageContainer.appendChild(imageName);
+
+        // Append the main div to the parent container
+        parentContainer.appendChild(imageContainer);
+    }
+        </script>
+      <!-- <div class="image-container">
+      <img src="sign language images\0.jpg"  alt=""width="200" height="200">
+      <p class="image-name">0</p>
+    </div>
+        <div class="image-container">
+        <img src="sign language images\1.jpg"  alt=""width="200" height="200">
+        <p class="image-name">1</p>
+      </div> -->
+       <div class="image-container">
+        <img src="sign language images\2.jpg"  alt=""width="200" height="200">
+        <p class="image-name">2</p>
+      </div>
+
+        <div class="image-container">
+        <img src="sign language images\3.jpg"  alt=""width="200" height="200">
+        <p class="image-name">3</p>
+        </div>
+        <!-- <div class="image-container">
+        <img src="sign language images\4.jpg"  alt=""width="400" height="400">
+        <p class="image-name">4</p>
+      </div>
+
+        <div class="image-container">
+        <img src="sign language images\5.jpg"  alt=""width="400" height="400">
+        <p class="image-name">5</p>
+      </div>
+          <div class="image-container">
+          <img src="sign language images\6.jpg"  alt=""width="400" height="400">
+          <p class="image-name">6</p>
+        </div>
+          <div class="image-container">
+          <img src="sign language images\7.jpg"  alt=""width="400" height="400">
+          <p class="image-name">7</p>
+        </div>
+  
+          <div class="image-container">
+          <img src="sign language images\8.jpg"  alt=""width="400" height="400">
+          <p class="image-name">8</p>
+          </div>
+          <div class="image-container">
+          <img src="sign language images\9.jpg"  alt=""width="400" height="400">
+          <p class="image-name">9</p>
+        </div>   
+           <div class="image-container">
+            <img src="sign language images\A.jpg"  alt=""width="400" height="400">
+            <p class="image-name">A</p>
+          </div>
+              <div class="image-container">
+              <img src="sign language images\B.jpg"  alt=""width="400" height="400">
+              <p class="image-name">B</p>
+            </div>
+              <div class="image-container">
+              <img src="sign language images\C.jpg"  alt=""width="400" height="400">
+              <p class="image-name">C</p>
+            </div>
+      
+              <div class="image-container">
+              <img src="sign language images\3.jpg"  alt=""width="400" height="400">
+              <p class="image-name">3</p>
+              </div>
+              <div class="image-container">
+              <img src="sign language images\4.jpg"  alt=""width="400" height="400">
+              <p class="image-name">4</p>
+            </div>
+      
+              <div class="image-container">
+              <img src="sign language images\5.jpg"  alt=""width="400" height="400">
+              <p class="image-name">5</p>
+            </div>
+                <div class="image-container">
+                <img src="sign language images\6.jpg"  alt=""width="400" height="400">
+                <p class="image-name">6</p>
+              </div>
+                <div class="image-container">
+                <img src="sign language images\7.jpg"  alt=""width="400" height="400">
+                <p class="image-name">7</p>
+              </div>
+        
+                <div class="image-container">
+                <img src="sign language images\8.jpg"  alt=""width="400" height="400">
+                <p class="image-name">8</p>
+                </div>
+                <div class="image-container">
+                <img src="sign language images\9.jpg"  alt=""width="400" height="400">
+                <p class="image-name">9</p>
+              </div> -->
+
+      <!-- Repeat the same set of images here as needed -->
+    </div>
+  </div>
+</body>
+</html>
