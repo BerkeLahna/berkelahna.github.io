@@ -2969,27 +2969,41 @@ input, select, textarea {
 	.profile-list {
 		display: flex;
 		flex-wrap: wrap;
-
 		justify-content: space-between; /* Adjust as needed: space-around, space-evenly */
-	  }
-	  
+		animation: slidein 1s forwards; /* Add slide-in animation */
+		opacity: 0; /* Start with opacity at 0 to fade in */
+		transform: translateY(30px); /* Start with a 30px upward translation */
+	}
+	
 	.profile-container {
 		text-align: center;
 		width: 170px; /* Adjust the width as needed */
-	  }
-	  
+	}
+	
 	.profile-picture {
 		width: 150px; /* Adjust the width as needed */
 		height: 150px; /* Adjust the height as needed */
 		border-radius: 50%; /* Make it a circle */
 		object-fit: cover; /* Maintain aspect ratio */
-	  }
-	  
+	}
+	
 	.profile-name {
 		margin-top: 10px; /* Adjust spacing between image and name */
 		font-size: 18px; /* Adjust the font size */
 		font-weight: bold; /* Adjust font weight as needed */
-	  }
+	}
+	
+	@keyframes slidein {
+		0% {
+			opacity: 0;
+			transform: translateY(300px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	
 	  
 	
 /* Section/Article */
