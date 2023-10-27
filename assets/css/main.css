@@ -2989,7 +2989,7 @@ input, select, textarea {
 	
 	.profile-name {
 		margin-top: 10px; /* Adjust spacing between image and name */
-		font-size: 18px; /* Adjust the font size */
+		font-size: 16px; /* Adjust the font size */
 		font-weight: bold; /* Adjust font weight as needed */
 	}
 	
@@ -3001,6 +3001,29 @@ input, select, textarea {
 		100% {
 			opacity: 1;
 			transform: translateY(0);
+		}
+	}
+	
+
+	.slide-in {
+		opacity: 0;   /* Start with 0 opacity to make it invisible */
+		transform: translateX(-100%);  /* Start position off-screen to the left */
+		animation: slidein2 1s forwards; /* Add slide-in animation */
+	}
+	.slide-in2 {
+		opacity: 0;   /* Start with 0 opacity to make it invisible */
+		transform: translateX(-100%);  /* Start position off-screen to the left */
+		animation: slidein 1s forwards; /* Add slide-in animation */
+	}
+	
+	@keyframes slidein2 {
+		0% {
+			opacity: 0;
+			transform: translateX(-300px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(0);
 		}
 	}
 	
