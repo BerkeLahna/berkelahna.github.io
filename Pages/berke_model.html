@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Gesture Demo</title>
+    <title>Hand Gesture</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 </head>
 <body class="is-preload">
 
@@ -38,25 +38,21 @@
         <div id="label-container" style="padding-left: 30%;"></div> -->
         <article class="post featured">
 
-            <div id = "spinnerContainer" >
-            <div id="spinnertext"> Loading...</div>
-                <div class="spinner"></div>
-           </div>
-
         <div id="videoElement"></div>
-
         <div id="label-container"></div>
+        <iframe src="https://berkelahna.github.io/slide.html" width="400" height="400" frameborder="0" style="width: 100%; height: 800px;"></iframe>
 
         </article>
 
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
         <script type="text/javascript">
+            var index = 1;
             // More API functions here:
             // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
         
             // the link to your model provided by Teachable Machine export panel
-            const URL = "https://teachablemachine.withgoogle.com/models/g7Qa1T6B_/";
+            const URL = "https://teachablemachine.withgoogle.com/models/-Ud4Ovrsa/";
         
             let model, webcam, labelContainer, maxPredictions;
         
@@ -81,14 +77,10 @@
         
                 // append elements to the DOM
                 document.getElementById("videoElement").appendChild(webcam.canvas);
-
-                document.getElementById("spinnerContainer").style.display = "none";
-
                 labelContainer = document.getElementById("label-container");
                 for (let i = 0; i < maxPredictions; i++) { // and class labels
                     labelContainer.appendChild(document.createElement("div"));
                 }
-                
             }
         
             async function loop() {
@@ -115,23 +107,52 @@
                     mostLikelyClass = classPrediction;
                 }
             }
-            classes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-            if (mostLikelyClass == "Class 1"){
-                mostLikelyClass = "A";
-            }
-            if (mostLikelyClass == "Class 2"){
-                mostLikelyClass = "B";
-            }
-            if (mostLikelyClass == "Class 3"){
-                mostLikelyClass = "C";
-            }
+            berke = "Berke";
+            canberk = "Canberk";
+            ceyhun = "Ceyhun";
+            fatih = "Fatih";
+            console.log(sequence)
+
+
+                
+           if (maxProbability > 0.80){             
             const mostLikelyPrediction = mostLikelyClass + ": " + maxProbability.toFixed(2);
             labelContainer.childNodes[0].innerHTML = mostLikelyPrediction;
+            if (mostLikelyClass == "B" && sequence == ""){
+                sequence="B"
+                console.log(sequence)
+                console.log("first clearance")
+            }
+               if(sequence == "B" && mostLikelyClass == "E"){
+                sequence+="e"
+                console.log("second clearance")
+               }
+                if(sequence == "Be" && mostLikelyClass == "R"){
+                    sequence+="r"
+                    console.log("third clearance")
+                }
+                    if(sequence == "Ber" && mostLikelyClass == "K"){
+                        sequence+="k"
+                        console.log("fourth clearance")
+                    }
+                        if(sequence == "Berk" && mostLikelyClass == "E"){
+                            mostLikelyClass = berke;
+                            sequence = "";
+                            console.log("Berke")
+                            labelContainer.childNodes[1].innerHTML = berke+" "+index;
+                            index += 1;
+
+                        }
+
+          }
+           else{
+            labelContainer.childNodes[0].innerHTML = "Unsure";
+          }
         }
         
+        sequence = "";
+
         document.addEventListener("DOMContentLoaded", init);
-        
-        
 
         </script>
 
@@ -143,13 +164,13 @@
 </div>
 
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.scrollex.min.js"></script>
+<script src="../assets/js/jquery.scrolly.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
 
 </body>
 </html>

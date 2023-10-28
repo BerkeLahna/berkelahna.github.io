@@ -2685,8 +2685,10 @@ input, select, textarea {
     width: 170px;
     height: 170px;
     transform-style: preserve-3d;
-    transition: transform 0.5s;
+    transition: transform 0.7s;
     cursor: pointer; /* Add cursor style to indicate interactivity */
+	animation: horizontalSpin 1.4s linear; /* Add animation: rotation 3s infinite linear */
+
 }
 
 .card:hover {
@@ -2973,11 +2975,16 @@ input, select, textarea {
 		animation: slidein 1s forwards; /* Add slide-in animation */
 		opacity: 0; /* Start with opacity at 0 to fade in */
 		transform: translateY(30px); /* Start with a 30px upward translation */
+		
+		
 	}
 	
 	.profile-container {
 		text-align: center;
 		width: 170px; /* Adjust the width as needed */
+		
+		
+		
 	}
 	
 	.profile-picture {
@@ -3004,6 +3011,26 @@ input, select, textarea {
 		}
 	}
 	
+	@keyframes horizontalSpin {
+		0% {
+			transform: rotateY(0deg);
+		}
+		100% {
+			transform: rotateY(360deg);
+		}
+	}
+
+	@keyframes sizeChange {
+		0% {
+			transform: scale(1); /* Start at 1.5 times the normal size */
+		}
+		50% {
+			transform: scale(1.5); /* Start at 1.5 times the normal size */
+		}
+		100% {
+			transform: scale(1); /* Return to the normal size */
+		}
+	}
 
 	.slide-in {
 		opacity: 0;   /* Start with 0 opacity to make it invisible */
@@ -3871,6 +3898,7 @@ input, select, textarea {
 			-ms-flex-shrink: 0;
 			flex-shrink: 0;
 			margin-bottom: 0;
+			animation: sizeChange 0.5s linear;
 		}
 
 		@media screen and (max-width: 980px) {

@@ -15,8 +15,8 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        -webkit-animation: slideToLeft 100s ease infinite;
-        animation: slideToLeft 100s ease infinite;
+        -webkit-animation: slideToLeft 100s linear;
+        animation: slideToLeft 100s  linear;
         animation-delay: 0s;
       }
       
@@ -140,7 +140,7 @@ for (const character of characters) {
 
         // Create the image element
         const image = document.createElement("img");
-        image.src = `sign language images/${character}.jpg`; // Check the file path here
+        image.src = `../sign language images/${character}.jpg`; // Check the file path here
         image.alt = "";
         image.width = 200;
         image.height = 200;
@@ -166,7 +166,7 @@ for (const character of characters) {
 
         // Create the image element
         const image = document.createElement("img");
-        image.src = `sign language images/${i}.jpg`; // Check the file path here
+        image.src = `../sign language images/${i}.jpg`; // Check the file path here
         image.alt = "";
         image.width = 200;
         image.height = 200;
