@@ -1300,6 +1300,31 @@ input, select, textarea {
 
 		}
 
+        .Documents-list {
+            display: flex;
+			justify-content: space-between; /* Adjust as needed: space-around, space-evenly */
+			
+        }
+		.bigger-logo {
+			font-size: 6em; /* Adjust the size as needed */
+			padding-left: 33px;
+		}
+		.logo-text {
+			margin-top: -50px; /* Adjust the margin as needed to bring the text closer to the logo */
+		}
+
+          .pdf-container {
+            display: none;
+        } 
+/*
+        .pdf-toggle:checked + .pdf-container {
+            display: block;
+        }
+
+        .pdf-toggle:checked + .pdf-close-label + .pdf-toggle .logo::before {
+            content: "\f00d"; /* Unicode for close icon (fa-times) 
+        }*/
+		 
 		@media screen and (max-width: 736px) {
 
 			.row {
@@ -3047,6 +3072,16 @@ input, select, textarea {
 		0% {
 			opacity: 0;
 			transform: translateX(-300px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+	@keyframes slidein3 {
+		0% {
+			opacity: 0;
+			transform: translateX(300px);
 		}
 		100% {
 			opacity: 1;

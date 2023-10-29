@@ -48,11 +48,71 @@
 							<section class="post">
 								<header class="major">
 									
-									<p> <a href="https://cnbrkaydemir.github.io/Cmpe-491/" style="color:#1879ef"><h1 class="slide-in">Project Document</h1></a></p>
-								</header>
+									<!-- <p> <a href="https://cnbrkaydemir.github.io/Cmpe-491/" style="color:#1879ef"><h1 class="slide-in">Project Documents</h1></p> -->
+										<h1>Project Documents</h2>
+								
+									</header>
 
 
-									<iframe class="slide-in2" src="https://cnbrkaydemir.github.io/Cmpe-491/" width="100%" height="500" frameborder="0" style="width: 100%; height: 800px;"></iframe>
+									<!-- <iframe class="slide-in2" src="https://cnbrkaydemir.github.io/Cmpe-491/" width="100%" height="500" frameborder="0" style="width: 100%; height: 800px;"></iframe>
+									<iframe class="slide-in2" src="https://cnbrkaydemir.github.io/Cmpe-491/" width="100%" height="500" frameborder="0" style="width: 100%; height: 800px;"></iframe> -->
+									
+									
+									<div class="Documents-list">
+										<div>
+											<a href="javascript:void(0);" class="pdf-toggle" data-pdf-container="pdf-container-1" >
+												<div class="icon brands fa-dochub logo bigger-logo" style="animation:slidein2 0.5s linear;"></div>
+												<p class="logo-text" style="animation:slidein2 0.5s linear;" >Project Proposal</p>
+											</a>
+										</div>
+								
+										<div>
+											<a href="javascript:void(0);" class="pdf-toggle" data-pdf-container="pdf-container-2" >
+												<div class="icon brands fa-dochub logo bigger-logo" style="margin-left:15px; animation: slidein3 0.5s linear;"></div>
+												<p class="logo-text" style="animation:slidein3 0.5s linear;">Project Specifications</p>
+											</a>
+										</div>
+									</div>
+								
+									<div class="Container pdf-container" id="pdf-container-1">
+										<iframe src="../documents/Project_Proposal.pdf" width="100%" height="1000" name="pdf-iframe" class="pdf-iframe" style="animation:slidein 0.5s linear;"></iframe>
+									</div>
+								
+									<div class="Container pdf-container" id="pdf-container-2">
+										<iframe src="../documents/Project_Specifications.pdf" width="100%" height="1000" name="pdf-iframe" class="pdf-iframe" style="animation:slidein 0.5s linear;"></iframe>
+									</div>
+									
+
+									
+										<script>
+											const pdfToggles = document.querySelectorAll('.pdf-toggle');
+											const pdfContainers = document.querySelectorAll('.pdf-container');
+									
+											pdfToggles.forEach((toggle) => {
+												toggle.addEventListener('click', () => {
+													const targetContainerId = toggle.getAttribute('data-pdf-container');
+													const targetContainer = document.getElementById(targetContainerId);
+									
+													if (targetContainer.style.display === 'none') {
+														pdfContainers.forEach((container) => {
+															container.style.display = 'none';
+														});
+														targetContainer.style.display = 'block';
+														targetContainer.scrollIntoView({ behavior: 'smooth' });
+
+													} else {
+														targetContainer.style.display = 'none';
+													}
+												});
+											});
+										</script>
+									
+									
+									
+
+
+									<!-- <iframe class="slide-in2" src="../documents/Project_Proposal.pdf" width="100%" height="500" frameborder="0" style="width: 100%; height: 800px;"></iframe>  -->
+									<!-- <iframe class="slide-in2" src="../documents/Project_Specifications.pdf" width="100%" height="500" frameborder="0" style="width: 100%; height: 800px;"></iframe>  -->
 
 
 
