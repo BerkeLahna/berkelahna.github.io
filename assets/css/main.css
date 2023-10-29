@@ -1316,6 +1316,31 @@ input, select, textarea {
           .pdf-container {
             display: none;
         } 
+		.logo-container:hover {
+
+			transform: scale(1.25);   
+		
+		} 
+
+		.logo-container {
+
+			animation: slidein3 0.5s linear;  
+		
+		} 
+
+		.logo-container1 {
+
+			animation: slidein2 0.5s linear;  
+
+		
+		} 
+
+		.logo-container1:hover {
+
+			transform: scale(1.25);        
+
+		
+		} 
 /*
         .pdf-toggle:checked + .pdf-container {
             display: block;
