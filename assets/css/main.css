@@ -135,6 +135,14 @@ input, select, textarea {
 
 		}
 
+		@media screen and (max-width: 800px) {
+
+			html {
+				font-size: 8pt;
+			}
+
+		}
+
 		@media screen and (max-width: 420px) {
 
 			html {
@@ -4059,6 +4067,32 @@ input, select, textarea {
 						margin: 0 0 1.5rem 0;
 					}
 
+					#main > article > h1 {
+						font-size: 22pt;
+						line-height: 1.2;
+						margin: 0 0 1.5rem 0;
+					}
+
+			}
+			@media screen and (max-width: 550px) {
+
+	
+				#main > article > h1 {
+					font-size: 16pt;
+					line-height: 1.2;
+					margin: 0 0 1.5rem 0;
+				}
+
+			}
+			@media screen and (max-width: 420px) {
+
+	
+				#main > article > h1 {
+					font-size: 1.5rem;
+					line-height: 1.2;
+					margin: 0 0 1.5rem 0;
+				}
+
 			}
 
 
@@ -4071,6 +4105,30 @@ input, select, textarea {
 					margin: 0 0 1.5rem 0;
 				}
 
+			}
+
+
+			
+
+			@media screen and (max-width: 560px) {
+				.video-canvas {
+					width: 420px; /* Change the width to 150px */
+					height: 420px; /* Change the height to 100px */
+				}
+			}
+			/* Media query for screens with a maximum width of 600px */
+			@media screen and (max-width: 420px) {
+				.video-canvas {
+					width: 350px; /* Change the width to 150px */
+					height: 350px; /* Change the height to 100px */
+				}
+			}
+
+			@media screen and (max-width: 380px) {
+				.video-canvas {
+					width: 300px; /* Change the width to 150px */
+					height: 300px; /* Change the height to 100px */
+				}
 			}
 
 		#main > .posts {
