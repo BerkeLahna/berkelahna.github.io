@@ -3075,6 +3075,18 @@ input, select, textarea {
 			transform: scale(1); /* Start at 1.5 times the normal size */
 		}
 		50% {
+			transform: scale(1.1); /* Start at 1.5 times the normal size */
+		}
+		100% {
+			transform: scale(1); /* Return to the normal size */
+		}
+	}
+
+	@keyframes sizeChangeSmaller {
+		0% {
+			transform: scale(1); /* Start at 1.5 times the normal size */
+		}
+		50% {
 			transform: scale(1.5); /* Start at 1.5 times the normal size */
 		}
 		100% {
@@ -3958,7 +3970,7 @@ input, select, textarea {
 			-ms-flex-shrink: 0;
 			flex-shrink: 0;
 			margin-bottom: 0;
-			animation: sizeChange 0.5s linear;
+			animation: sizeChangeSmaller 0.5s linear;
 		}
 
 		@media screen and (max-width: 980px) {
