@@ -75,7 +75,8 @@
                 // Convenience function to setup a webcam
                 const flip = true; // whether to flip the webcam
                 webcam = new tmImage.Webcam(500, 500, flip); // width, height, flip
-                await webcam.setup(); // request access to the webcam
+                try {
+                await webcam.setup();
                 await webcam.play();
                 window.requestAnimationFrame(loop);
         
@@ -90,7 +91,12 @@
                 for (let i = 0; i < maxPredictions; i++) { // and class labels
                     labelContainer.appendChild(document.createElement("div"));
                 }
-                
+            }
+            catch (error){
+                document.getElementById("spinnerContainer").style.display = "none";
+                document.getElementById("label-container").innerHTML = "Please allow access to your webcam to use this feature.";
+            }
+
             }
         
             async function loop() {
