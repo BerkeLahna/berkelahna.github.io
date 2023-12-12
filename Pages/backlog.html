@@ -62,7 +62,7 @@
                     <article class="post featured">
                         <h1 class="slide-in">Product Backlogs</h1>
                         <p class="slide-in2"> Backlog Version 0.1</p>
-                        <table class="slide-in2">
+                        <table class="slide-in2" id ="focus">
                             <tr>
                                 <th>Task Name</th>
                                 <th>User Story</th>
@@ -105,7 +105,19 @@
 					</div>
 
 			</div>
-
+            <script>
+                window.onload = function() {
+                  // Get the element you want to scroll to
+                  var section = document.getElementById('focus');
+                  
+                  // Scroll to that element
+                  section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center', // Adjust this option to 'center', 'end', or an offset value
+                    inline: 'center'
+                });
+                };
+              </script>
 		<!-- Scripts -->
 			<script src="../assets/js/jquery.min.js"></script>
 			<script src="../assets/js/jquery.scrollex.min.js"></script>

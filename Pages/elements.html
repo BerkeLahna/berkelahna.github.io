@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="is-preload">
+	<!-- <body class="is-preload"> -->
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -49,7 +49,7 @@
 								<header class="major">
 									
 									<!-- <p> <a href="https://cnbrkaydemir.github.io/Cmpe-491/" style="color:#1879ef"><h1 class="slide-in">Project Documents</h1></p> -->
-										<h1 class="slide-in2">Project Documents</h2>
+										<h1 class="slide-in2" id ="focus">Project Documents</h2>
 								
 									</header>
 
@@ -66,10 +66,16 @@
 											</a>
 										</div>
 								
-										<div class="logo-container1" >
+										<div >
 											<a href="javascript:void(0);" class="pdf-toggle" data-pdf-container="pdf-container-2" >
 												<div class="icon brands fa-dochub logo bigger-logo" ></div>
 												<p class="logo-text" >Project Specifications</p>
+											</a>
+										</div>
+										<div class="logo-container1" >
+											<a href="javascript:void(0);" class="pdf-toggle" data-pdf-container="pdf-container-3" >
+												<div class="icon brands fa-dochub logo bigger-logo"  ></div>
+												<p class="logo-text" >Project Analysis</p>
 											</a>
 										</div>
 									</div>
@@ -81,30 +87,34 @@
 									<div class="Container pdf-container" id="pdf-container-2">
 										<iframe src="../Documents/Project_Specifications.pdf" width="100%" height="1000" name="pdf-iframe" class="pdf-iframe" style="animation:slidein 0.75s linear;"></iframe>
 									</div>
+									<div class="Container pdf-container" id="pdf-container-3">
+										<iframe src="../Documents/Project_Analysis.pdf" width="100%" height="1000" name="pdf-iframe" class="pdf-iframe" style="animation:slidein 0.75s linear;"></iframe>
+									</div>
 									
 
 									
 										<script>
 											const pdfToggles = document.querySelectorAll('.pdf-toggle');
 											const pdfContainers = document.querySelectorAll('.pdf-container');
-									
+											
 											pdfToggles.forEach((toggle) => {
 												toggle.addEventListener('click', () => {
 													const targetContainerId = toggle.getAttribute('data-pdf-container');
 													const targetContainer = document.getElementById(targetContainerId);
-									
-													if (targetContainer.style.display === 'none') {
+													const computedStyle = window.getComputedStyle(targetContainer);
+											
+													if (computedStyle.display === 'none') {
 														pdfContainers.forEach((container) => {
 															container.style.display = 'none';
 														});
 														targetContainer.style.display = 'block';
 														targetContainer.scrollIntoView({ behavior: 'smooth' });
-
 													} else {
 														targetContainer.style.display = 'none';
 													}
 												});
 											});
+											
 										</script>
 									
 									
@@ -119,7 +129,19 @@
 							
 							</section>
 					</footer>
-
+					<script>
+						window.onload = function() {
+						  // Get the element you want to scroll to
+						  var section = document.getElementById('focus');
+						  
+						  // Scroll to that element
+						  section.scrollIntoView({
+							behavior: 'smooth',
+							block: 'center', // Adjust this option to 'center', 'end', or an offset value
+							inline: 'center'
+						});
+						};
+					  </script>
 				<!-- Copyright -->
 					<div id="copyright">
 					</div>
