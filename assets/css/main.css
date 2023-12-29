@@ -4999,6 +4999,14 @@ input, select, textarea {
 			}
 
 		}
+		@media screen and (max-width: 500px) {
+
+			#navPanel {
+				color: #ffffff;
+				background-color: #2f7b25a3;
+			}
+
+		}
 
 	@media screen and (max-width: 980px) {
 
