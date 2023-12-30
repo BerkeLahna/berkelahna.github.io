@@ -4000,6 +4000,52 @@ input, select, textarea {
 		}
 
 /* Main */
+img.gesture_icon {
+    width: 50%;
+    border-radius: 10%; /* Make it a circle */
+
+    /* Center horizontally */
+    margin-left: auto;
+    margin-right: auto;
+	margin-bottom: -55%;
+    display: block;
+    /* Position from top */
+    margin-top: 10%;
+}
+
+@media screen and (max-width: 500px) {
+
+	img.gesture_icon {
+		width: 75%;
+		border-radius: 10%; /* Make it a circle */
+	
+		/* Center horizontally */
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: -100%;
+		display: block;
+		/* Position from top */
+		margin-top: 42%;
+	}
+
+}
+@media screen and (max-width: 400px) {
+
+	img.gesture_icon {
+		width: 80%;
+		border-radius: 10%; /* Make it a circle */
+	
+		/* Center horizontally */
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: -150%;
+		display: block;
+		/* Position from top */
+		margin-top: 42%;
+	}
+
+}
+
 
 	#main {
 		background-color: #ffffff;
