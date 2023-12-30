@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Gesture Demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <a href="hand_gesture.html" class="logo" style="animation:sizeChange 0.5s linear;">Try It</a>
+    </header>
+
+    <!-- Nav -->
+    <nav id="nav">
+        <ul class="links">
+            <li><a href="index.html">Project Page</a></li>
+            <li><a href="generic.html">Project Creators</a></li>
+            <li><a href="elements.html">Project Documents</a></li>
+            <li class="active"><a href="hand_gesture.html">Gesture Demo</a></li>
+            <li ><a href="backlog.html">Product Backlog</a></li>
+        </ul>
+        <ul class="icons">
+            <li><a href="https://github.com/BerkeLahna/berkelahna.github.io" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+        <!-- <button type="button" onclick="init()">Start</button> -->
+        <!-- <div id="videoElement" style="padding-left: 30%;"></div>
+        <div id="label-container" style="padding-left: 30%;"></div> -->
+        <article class="post featured">
+
+            <div id = "spinnerContainer" >
+            <div id="spinnertext"> Loading...</div>
+                <div class="spinner"></div>
+           </div>
+
+        <div id="videoElement"></div>
+
+        <div id="label-container"></div>
+
+        </article>
+
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+        <script type="text/javascript">
+            // More API functions here:
+            // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+        
+            // the link to your model provided by Teachable Machine export panel
+            const URL = "https://teachablemachine.withgoogle.com/models/g7Qa1T6B_/";
+        
+            let model, webcam, labelContainer, maxPredictions;
+        
+            // Load the image model and setup the webcam
+            async function init() {
+                const modelURL = URL + "model.json";
+                const metadataURL = URL + "metadata.json";
+        
+                // load the model and metadata
+                // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+                // or files from your local hard drive
+                // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+        
+                // Convenience function to setup a webcam
+                const flip = true; // whether to flip the webcam
+                webcam = new tmImage.Webcam(500, 500, flip); // width, height, flip
+                try {
+                await webcam.setup();
+                await webcam.play();
+                window.requestAnimationFrame(loop);
+        
+                // append elements to the DOM
+                document.getElementById("videoElement").appendChild(webcam.canvas);
+                webcam.canvas.classList.add("video-canvas");
+
+
+                document.getElementById("spinnerContainer").style.display = "none";
+
+                labelContainer = document.getElementById("label-container");
+                for (let i = 0; i < maxPredictions; i++) { // and class labels
+                    labelContainer.appendChild(document.createElement("div"));
+                }
+            }
+            catch (error){
+                document.getElementById("spinnerContainer").style.display = "none";
+                document.getElementById("label-container").innerHTML = "Please allow access to your webcam to use this feature.";
+            }
+
+            }
+        
+            async function loop() {
+                webcam.update(); // update the webcam frame
+                await predict();
+                window.requestAnimationFrame(loop);
+            }
+        
+            // run the webcam image through the image model
+        // run the webcam image through the image model
+        // run the webcam image through the image model
+        async function predict() {
+            // predict can take in an image, video, or canvas HTML element
+            const prediction = await model.predict(webcam.canvas);
+            let maxProbability = -1;
+            let mostLikelyClass = "";
+            
+            for (let i = 0; i < maxPredictions; i++) {
+                const classPrediction = prediction[i].className;
+                const probability = prediction[i].probability;
+        
+                if (probability > maxProbability) {
+                    maxProbability = probability;
+                    mostLikelyClass = classPrediction;
+                }
+            }
+            classes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+            if (maxProbability > 0.80){   
+            if (mostLikelyClass == "Class 1"){
+                mostLikelyClass = "A";
+                AndroidInterface.performAction(mostLikelyClass);
+
+            }
+            if (mostLikelyClass == "Class 2"){
+                mostLikelyClass = "B";
+                AndroidInterface.performAction(mostLikelyClass);
+
+            }
+            if (mostLikelyClass == "Class 3"){
+                mostLikelyClass = "C";
+                AndroidInterface.performAction(mostLikelyClass);
+
+            }
+            }
+            const mostLikelyPrediction = mostLikelyClass + ": " + maxProbability.toFixed(2);
+            labelContainer.childNodes[0].innerHTML = mostLikelyPrediction;
+        }
+        
+        document.addEventListener("DOMContentLoaded", init);
+        
+        
+
+        </script>
+
+    </div>
+
+    <!-- Copyright -->
+    <div id="copyright">
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.scrollex.min.js"></script>
+<script src="../assets/js/jquery.scrolly.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>
