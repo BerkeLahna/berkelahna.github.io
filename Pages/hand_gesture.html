@@ -32,7 +32,7 @@
     </nav>
 
     <!-- Main -->
-    <div id="main">
+    <div id="main" >
         <!-- <button type="button" onclick="init()">Start</button> -->
         <!-- <div id="videoElement" style="padding-left: 30%;"></div>
         <div id="label-container" style="padding-left: 30%;"></div> -->
@@ -42,10 +42,12 @@
             <div id="spinnertext"> Loading...</div>
                 <div class="spinner"></div>
            </div>
-
+           <div style="width: 100%; overflow: hidden;">
         <div id="videoElement"></div>
+        <div id="label-container2" style="margin-left: 720px;margin-top:-60%;position:absolute"></div>
+    </div>
 
-        <div id="label-container"></div>
+        <div id="label-container" ></div>
 
         </article>
 
@@ -54,11 +56,15 @@
         <script type="text/javascript">
             // More API functions here:
             // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
-        
+           
             // the link to your model provided by Teachable Machine export panel
-            const URL = "https://teachablemachine.withgoogle.com/models/g7Qa1T6B_/";
-        
-            let model, webcam, labelContainer, maxPredictions;
+
+            //old model
+           // const URL = "https://teachablemachine.withgoogle.com/models/g7Qa1T6B_/";
+          
+           const URL = " https://teachablemachine.withgoogle.com/models/5oZgS42fS/";
+
+            let model, webcam, labelContainer, maxPredictions,labelcontainer2;
         
             // Load the image model and setup the webcam
             async function init() {
@@ -88,8 +94,12 @@
                 document.getElementById("spinnerContainer").style.display = "none";
 
                 labelContainer = document.getElementById("label-container");
+                labelContainer2 = document.getElementById("label-container2");
+
                 for (let i = 0; i < maxPredictions; i++) { // and class labels
                     labelContainer.appendChild(document.createElement("div"));
+                        labelContainer2.appendChild(document.createElement("div"));
+
                 }
             }
             catch (error){
@@ -123,7 +133,7 @@
                     mostLikelyClass = classPrediction;
                 }
             }
-            classes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+        /*    classes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
             if (mostLikelyClass == "Class 1"){
                 mostLikelyClass = "A";
             }
@@ -132,10 +142,20 @@
             }
             if (mostLikelyClass == "Class 3"){
                 mostLikelyClass = "C";
-            }
+            }*/
+            if (maxProbability > 0.99){    
             const mostLikelyPrediction = mostLikelyClass + ": " + maxProbability.toFixed(2);
             labelContainer.childNodes[0].innerHTML = mostLikelyPrediction;
+  
         }
+        labelContainer.childNodes[0].style.marginBottom = "25%";
+        labelContainer2.childNodes[0].innerHTML = "";
+
+        for (let i = 0; i < maxPredictions; i++) {
+            labelContainer2.childNodes[i].innerHTML =" "+ prediction[i].className+ ":" + prediction[i].probability.toFixed(2);
+
+        }
+    }
         
         document.addEventListener("DOMContentLoaded", init);
         
