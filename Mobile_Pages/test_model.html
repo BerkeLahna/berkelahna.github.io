@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Hand Gesture</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+
+<!-- !!!!!NAVBAR UTILIZE AFTER ADDING MORE PAGES!!!  --> 
+    <!-- Nav --> 
+    <nav id="nav" >
+        <ul class="links">
+            <div class ="mobile-bar" >
+                <h3>Gesture Guide</h3>
+  </div>
+            <li><a style="margin-top: 50px"></a></li>
+            <li><a href="mobile_model.html" >Interpreter</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="profile.html">My Profile</a></li>
+            <li><a></a></li>
+            <p style="position: absolute; bottom: 40px;right:25px">Help</p>
+            <p style="position: absolute; bottom: 0px; right:25px">Log out</p>
+         
+        </ul>
+
+    </nav> 
+
+
+    <!-- Main -->
+    <div id="main" style="margin-top:50px;">
+        
+        <!-- <button type="button" onclick="init()">Start</button> -->
+        <!-- <div id="videoElement" style="padding-left: 30%;"></div>
+        <div id="label-container" style="padding-left: 30%;"></div> -->
+        
+        <article class="post featured" >
+        
+            <div id = "spinnerContainer" >
+                <div id="spinnertext"> Loading...</div>
+                <div class="spinner" style="top:30%"></div>
+               </div>
+
+               <div id="modelSwitch"  >
+                <label for="modelSelect">Select Model:</label>
+                <select id="modelSelect" onchange="changeModel(this.value)">
+                    <option value="URL">Sign to Text</option>
+                    <option value="URL2">Sign to Activity</option>
+                    <!-- Add more options if you have additional models -->
+                </select>
+            </div>
+        <div id="videoElement"></div>
+        
+        <div id="label-container"></div>
+
+
+        </article>
+
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+        <script type="text/javascript">
+            var index = 1;
+            // More API functions here:
+            // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+        
+            // the link to your model provided by Teachable Machine export panel
+            const URL = "https://teachablemachine.withgoogle.com/models/-Ud4Ovrsa/";
+            const URL2= " https://teachablemachine.withgoogle.com/models/BqOPxNTyK/";
+
+           
+            let model, webcam, labelContainer, maxPredictions;
+            let currentModelURL = URL; // Define a global variable to hold the current model URL
+
+            // Function to change the model based on user selection
+            async function changeModel(selectedModel) {
+                // Update the currentModelURL based on the selected model
+                if (selectedModel === "URL") {
+                    currentModelURL = URL; // Update with the actual URL for Model 1
+                } else if (selectedModel === "URL2") {
+                    currentModelURL = URL2; // Update with the actual URL for Model 2
+                }
+                
+                // Call the init function again to load the newly selected model
+              //  await init();
+              const modelURL = currentModelURL  + "model.json";
+              const metadataURL = currentModelURL  + "metadata.json";
+              model = await tmImage.load(modelURL, metadataURL);
+              maxPredictions = model.getTotalClasses();
+      
+            }
+            // Load the image model and setup the webcam
+            async function init() {
+                const modelURL = currentModelURL  + "model.json";
+                const metadataURL = currentModelURL  + "metadata.json";
+        
+                // load the model and metadata
+                // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+                // or files from your local hard drive
+                // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+        
+                // Convenience function to setup a webcam
+                const flip = true; // whether to flip the webcam
+                webcam = new tmImage.Webcam(500, 500, flip); // width, height, flip
+                try {
+                    await webcam.setup();
+                    await webcam.play();
+                    window.requestAnimationFrame(loop);
+            
+                    // append elements to the DOM
+                    document.getElementById("videoElement").appendChild(webcam.canvas);
+                    webcam.canvas.classList.add("video-canvas");
+    
+    
+                    document.getElementById("spinnerContainer").style.display = "none";
+    
+                    labelContainer = document.getElementById("label-container");
+                    for (let i = 0; i < maxPredictions; i++) { // and class labels
+                        labelContainer.appendChild(document.createElement("div"));
+                    }
+                }
+                catch (error){
+                    document.getElementById("spinnerContainer").style.display = "none";
+                    document.getElementById("label-container").innerHTML = "Please allow access to your webcam to use this feature.";
+                }
+    
+                }
+            
+                async function loop() {
+                    webcam.update(); // update the webcam frame
+                    await predict();
+                    window.requestAnimationFrame(loop);
+                }
+            // run the webcam image through the image model
+        // run the webcam image through the image model
+        // run the webcam image through the image model
+        async function predict() {
+            // predict can take in an image, video, or canvas HTML element
+            const prediction = await model.predict(webcam.canvas);
+            let maxProbability = -1;
+            let mostLikelyClass = "";
+            
+            for (let i = 0; i < maxPredictions; i++) {
+                const classPrediction = prediction[i].className;
+                const probability = prediction[i].probability;
+        
+                if (probability > maxProbability) {
+                    maxProbability = probability;
+                    mostLikelyClass = classPrediction;
+                }
+            }
+            berke = "Berke";
+            canberk = "Canberk";
+            ceyhun = "Ceyhun";
+            fatih = "Fatih";
+            console.log(sequence)
+
+
+                
+           if (maxProbability > 0.80){             
+            const mostLikelyPrediction = mostLikelyClass + ": " + maxProbability.toFixed(2);
+            labelContainer.childNodes[0].innerHTML = mostLikelyPrediction;
+            if (mostLikelyClass == "B" && sequence == ""){
+                sequence="B"
+                console.log(sequence)
+                console.log("first clearance")
+            }
+               if(sequence == "B" && mostLikelyClass == "E"){
+                sequence+="e"
+                console.log("second clearance")
+               }
+                if(sequence == "Be" && mostLikelyClass == "R"){
+                    sequence+="r"
+                    console.log("third clearance")
+                }
+                    if(sequence == "Ber" && mostLikelyClass == "K"){
+                        sequence+="k"
+                        console.log("fourth clearance")
+                    }
+                        if(sequence == "Berk" && mostLikelyClass == "E"){
+                            mostLikelyClass = berke;
+                            sequence = "";
+                            console.log("Berke")
+                            labelContainer.childNodes[1].innerHTML = berke+" "+index;
+                            index += 1;
+                            AndroidInterface.performAction(berke);
+
+                        }
+
+          }
+           else{
+            labelContainer.childNodes[0].innerHTML = "Unsure";
+          }
+        }
+        
+        sequence = "";
+
+        document.addEventListener("DOMContentLoaded", init);
+
+        </script>
+
+    </div>
+    <iframe src="../Pages/slide.html" width="400" height="400" frameborder="0" style="width: 100%; height: 800px;"></iframe>
+
+    <!-- Copyright -->
+    <div id="copyright">
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.scrollex.min.js"></script>
+<script src="../assets/js/jquery.scrolly.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>

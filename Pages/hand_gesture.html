@@ -42,12 +42,11 @@
             <div id="spinnertext"> Loading...</div>
                 <div class="spinner"></div>
            </div>
-           <div style="width: 100%; overflow: hidden;">
         <div id="videoElement"></div>
-        <div id="label-container2" style="margin-left: 720px;margin-top:-60%;position:absolute"></div>
-    </div>
 
         <div id="label-container" ></div>
+        <div id="label-container2"></div>
+
 
         </article>
 
@@ -63,6 +62,8 @@
            // const URL = "https://teachablemachine.withgoogle.com/models/g7Qa1T6B_/";
           
            const URL = " https://teachablemachine.withgoogle.com/models/5oZgS42fS/";
+           const URL2 = " https://teachablemachine.withgoogle.com/models/gySIwk5hd/";
+
 
             let model, webcam, labelContainer, maxPredictions,labelcontainer2;
         
@@ -70,13 +71,19 @@
             async function init() {
                 const modelURL = URL + "model.json";
                 const metadataURL = URL + "metadata.json";
+
+                const modelURL2 = URL2 + "model.json";
+                const metadataURL2 = URL2 + "metadata.json";
         
                 // load the model and metadata
                 // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
                 // or files from your local hard drive
                 // Note: the pose library adds "tmImage" object to your window (window.tmImage)
                 model = await tmImage.load(modelURL, metadataURL);
+                model2 = await tmImage.load(modelURL2, metadataURL2);
                 maxPredictions = model.getTotalClasses();
+                maxPredictions2 = model2.getTotalClasses();
+
         
                 // Convenience function to setup a webcam
                 const flip = true; // whether to flip the webcam
@@ -98,7 +105,10 @@
 
                 for (let i = 0; i < maxPredictions; i++) { // and class labels
                     labelContainer.appendChild(document.createElement("div"));
-                        labelContainer2.appendChild(document.createElement("div"));
+
+                }
+                for (let i = 0; i < maxPredictions2; i++) { // and class labels
+                    labelContainer2.appendChild(document.createElement("div"));
 
                 }
             }
@@ -123,6 +133,10 @@
             const prediction = await model.predict(webcam.canvas);
             let maxProbability = -1;
             let mostLikelyClass = "";
+
+            const prediction2 = await model2.predict(webcam.canvas);
+            let maxProbability2 = -1;
+            let mostLikelyClass2 = "";
             
             for (let i = 0; i < maxPredictions; i++) {
                 const classPrediction = prediction[i].className;
@@ -131,6 +145,15 @@
                 if (probability > maxProbability) {
                     maxProbability = probability;
                     mostLikelyClass = classPrediction;
+                }
+            }
+            for (let i = 0; i < maxPredictions2; i++) {
+                const classPrediction2 = prediction2[i].className;
+                const probability2 = prediction2[i].probability;
+        
+                if (probability2 > maxProbability2) {
+                    maxProbability2 = probability2;
+                    mostLikelyClass2 = classPrediction2;
                 }
             }
         /*    classes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
@@ -143,18 +166,24 @@
             if (mostLikelyClass == "Class 3"){
                 mostLikelyClass = "C";
             }*/
-            if (maxProbability > 0.99){    
+            if (maxProbability > 0.80){    
             const mostLikelyPrediction = mostLikelyClass + ": " + maxProbability.toFixed(2);
             labelContainer.childNodes[0].innerHTML = mostLikelyPrediction;
   
         }
-        labelContainer.childNodes[0].style.marginBottom = "25%";
+
+        if (maxProbability2 > 0.80){    
+            const mostLikelyPrediction2 = mostLikelyClass2 + ": " + maxProbability2.toFixed(2);
+            labelContainer2.childNodes[0].innerHTML = mostLikelyPrediction2;
+  
+        }
+     /*  labelContainer.childNodes[0].style.marginBottom = "25%";
         labelContainer2.childNodes[0].innerHTML = "";
 
         for (let i = 0; i < maxPredictions; i++) {
             labelContainer2.childNodes[i].innerHTML =" "+ prediction[i].className+ ":" + prediction[i].probability.toFixed(2);
 
-        }
+        }*/
     }
         
         document.addEventListener("DOMContentLoaded", init);
