@@ -10,11 +10,24 @@
 </head>
 <body class="is-preload">
 
+    <!-- redirect code if the user is not on mobile -->
+    <!-- <script>
+        // Check if the user is on a mobile device
+        if (/Mobi/.test(navigator.userAgent) || /Android/i.test(navigator.userAgent) || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            console.log("mobile");       
+        }
+        else {
+            // Display a message and add a delay before redirecting to a desktop version
+            console.log("desktop - redirecting in 2 seconds");
+            setTimeout(function() {
+                window.location.href = "../Pages/hand_gesture.html"; // Change "hand_gesture.html" to the desired desktop version URL
+            }, 2000); // 2000 milliseconds (2 seconds) delay
+        }
+    </script> -->
 <!-- Wrapper -->
 <div id="wrapper">
 
 
-<!-- !!!!!NAVBAR UTILIZE AFTER ADDING MORE PAGES!!!  --> 
     <!-- Nav --> 
     <nav id="nav" >
         <ul class="links">
@@ -22,9 +35,11 @@
                 <h3>Gesture Guide</h3>
   </div>
             <li><a style="margin-top: 50px"></a></li>
-            <li><a href="mobile_model.html" >Interpreter</a></li>
+            <li class="active"><a href="mobile_model.html" >Interpreter</a></li>
             <li><a href="settings.html">Settings</a></li>
             <li><a href="profile.html">My Profile</a></li>
+            <li><a href="sign_language_alphabet.html">Help</a></li>
+
             <li><a></a></li>
             <p style="position: absolute; bottom: 40px;right:25px">Help</p>
             <p style="position: absolute; bottom: 0px; right:25px">Log out</p>
@@ -45,6 +60,14 @@
                 <div id="spinnertext"> Loading...</div>
                 <div class="spinner"></div>
                </div>
+               
+               <div id="modelSwitch"  >
+                <label for="modelSelect" style="color: wheat;">Select Model:</label>
+                <select id="modelSelect" onchange="changeModel(this.value)">
+                    <option value="URL">Sign to Text</option>
+                    <option value="URL2">Sign to Activity</option>
+                </select>
+            </div>
         <div id="videoElement"></div>
         <div id="label-container"></div>
         <div id="label-container2"></div>
@@ -64,12 +87,27 @@
             // the link to your model provided by Teachable Machine export panel
        
                 const URL = "https://teachablemachine.withgoogle.com/models/-Ud4Ovrsa/";
+                const URL2= " https://teachablemachine.withgoogle.com/models/BqOPxNTyK/";
 
 
             let model, webcam, labelContainer, maxPredictions, count=60;
+            let currentModelURL = URL; // Define a global variable to hold the current model URL
+
+            async function changeModel(selectedModel) {
+                // Update the currentModelURL based on the selected model
+                if (selectedModel === "URL") {
+                    currentModelURL = URL; // Update with the actual URL for Model 1
+                } else if (selectedModel === "URL2") {
+                    currentModelURL = URL2; // Update with the actual URL for Model 2
+                }
+                const modelURL = currentModelURL  + "model.json";
+                const metadataURL = currentModelURL  + "metadata.json";
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
         
+              }
             function  write_Letter(letter){
-                if (letter=="Unsure")
+                if (letter=="Unsure" || letter=="Empty")
                 {
                     if(count <=50)
                     count += 10;
@@ -82,8 +120,8 @@
             }
             // Load the image model and setup the webcam
             async function init() {
-                const modelURL = URL + "model.json";
-                const metadataURL = URL + "metadata.json";
+                const modelURL = currentModelURL  + "model.json";
+                const metadataURL = currentModelURL  + "metadata.json";
         
                 // load the model and metadata
                 // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
@@ -110,6 +148,7 @@
                     labelContainer = document.getElementById("label-container");
                     labelContainer2 = document.getElementById("label-container2");
                     delete_Button = document.getElementById("deleteButton");
+                    document.getElementById("modelSwitch").style.visibility = "visible";
                     delete_Button.style.visibility = "visible";
                     for (let i = 0; i < maxPredictions; i++) { // and class labels
                         labelContainer.appendChild(document.createElement("div"));
