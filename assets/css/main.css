@@ -5093,14 +5093,20 @@ img.gesture_icon {
 			}
 
 		}
-		@media screen and (max-width: 500px) {
+		/* @media screen and (max-width: 500px) {
 
 			#navPanel {
 				color: #ffffff;
-				background-color: #2f7b25a3;
+				/* background-color: #2f7b25a3; 
+				background-color: #257b7ba3;
+				
+
+			}
+			li a{
+				color: #ffffff;
 			}
 
-		}
+		} */
 
 	@media screen and (max-width: 980px) {
 

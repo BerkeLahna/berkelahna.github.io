@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/mobile_css.css" />
     <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 </head>
 <body class="is-preload">
@@ -42,17 +43,32 @@
 
                 <h3>Profile</h3>
                 <form>
-                  <label for="fname">First Name:</label><br>
-                  <input type="text" id="fname" name="fname" value="Andrew"><br>
-                  <label for="lname">Last Name:</label><br>
-                  <input type="text" id="lname" name="lname" value=""><br>
-                  <label for="lang">Language:</label><br>
-                  <input type="text" id="lang" name="lang" value="English"><br>
-                  <label for="dob">Date of Birth:</label><br>
-                  <input type="text" id="dob" name="dob" value="18/04/1976"><br>
-                  <label for="email">Email:</label><br>
-                  <input type="text" id="email" name="email" value="andrew.ng@stanford.com"><br>
-                  <input type="submit" value="Save Changes">
+                    <div class="profile-labels">
+                        <label for="fname">First Name:</label>
+                        <input type="text" id="fname" name="fname" value="Andrew">
+                    </div>
+                
+                    <div class="profile-labels">
+                        <label for="lname">Last Name:</label>
+                        <input type="text" id="lname" name="lname" value="">
+                    </div>
+                
+                    <div class="profile-labels">
+                        <label for="lang">Language:</label>
+                        <input type="text" id="lang" name="lang" value="English">
+                    </div>
+                
+                    <div class="profile-labels">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="text" id="dob" name="dob" value="18/04/1976">
+                    </div>
+                
+                    <div class="profile-labels">
+                        <label for="email">Email:</label>
+                        <input type="text" id="email" name="email" value="andrew.ng@stanford.com">
+                    </div>
+                
+                    <input type="submit" value="Save Changes" style="background-color: rgba(30, 54, 192, 0.442);margin-top:50px;">
                 </form>
         </article>
     </div>

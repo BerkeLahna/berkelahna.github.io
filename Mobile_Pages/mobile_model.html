@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/mobile_css.css" />
     <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 </head>
 <body class="is-preload">
@@ -34,7 +35,7 @@
 
 
     <!-- Main -->
-    <div id="main" style="margin-top:50px;">
+    <div id="main" >
         
         <!-- <button type="button" onclick="init()">Start</button> -->
         <!-- <div id="videoElement" style="padding-left: 30%;"></div>
@@ -46,6 +47,9 @@
                </div>
         <div id="videoElement"></div>
         <div id="label-container"></div>
+        <div id="label-container2"></div>
+
+        <iframe src="../Pages/slide.html" width="400" height="400" frameborder="0" style="width: 100%; height: 220px;"></iframe>
 
         </article>
 
@@ -57,10 +61,24 @@
             // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
         
             // the link to your model provided by Teachable Machine export panel
-            const URL = "https://teachablemachine.withgoogle.com/models/-Ud4Ovrsa/";
+       
+                const URL = "https://teachablemachine.withgoogle.com/models/-Ud4Ovrsa/";
+
+
+            let model, webcam, labelContainer, maxPredictions, count=60;
         
-            let model, webcam, labelContainer, maxPredictions;
-        
+            function  write_Letter(letter){
+                if (letter=="Unsure")
+                {
+                    if(count <=50)
+                    count += 10;
+                }
+                count--;
+                if(count == 0){
+                    labelContainer2.innerHTML += letter;
+                    count = 60;
+                }
+            }
             // Load the image model and setup the webcam
             async function init() {
                 const modelURL = URL + "model.json";
@@ -89,6 +107,8 @@
                     document.getElementById("spinnerContainer").style.display = "none";
     
                     labelContainer = document.getElementById("label-container");
+                    labelContainer2 = document.getElementById("label-container2");
+
                     for (let i = 0; i < maxPredictions; i++) { // and class labels
                         labelContainer.appendChild(document.createElement("div"));
                     }
@@ -124,16 +144,15 @@
                 }
             }
             berke = "Berke";
-            canberk = "Canberk";
-            ceyhun = "Ceyhun";
-            fatih = "Fatih";
+
             console.log(sequence)
 
-
-                
-           if (maxProbability > 0.80){             
+ 
+           if (maxProbability > 0.80){    
+         //   labelContainer2.innerHTML+=mostLikelyClass;
+         write_Letter(mostLikelyClass);
             const mostLikelyPrediction = mostLikelyClass + ": " + maxProbability.toFixed(2);
-            labelContainer.childNodes[0].innerHTML = mostLikelyPrediction;
+            labelContainer.childNodes[0].innerHTML = mostLikelyPrediction+" "+count;
             if (mostLikelyClass == "B" && sequence == ""){
                 sequence="B"
                 console.log(sequence)
@@ -163,6 +182,8 @@
 
           }
            else{
+            write_Letter("Unsure");
+
             labelContainer.childNodes[0].innerHTML = "Unsure";
           }
         }
@@ -174,7 +195,6 @@
         </script>
 
     </div>
-    <iframe src="../Pages/slide.html" width="400" height="400" frameborder="0" style="width: 100%; height: 800px;"></iframe>
 
     <!-- Copyright -->
     <div id="copyright">

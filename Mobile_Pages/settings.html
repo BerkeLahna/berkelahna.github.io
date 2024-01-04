@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/mobile_css.css" />
     <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 </head>
 <body class="is-preload">
@@ -44,15 +45,31 @@
 
             <form>
               <label for="fsize">Font Size:</label><br>
-              <input type="range" id="fsize" name="fsize"><br>
+              <input type="range" id="fsize" name="fsize" style="background-color:rgb(8, 0, 255); height:4px;"><br>
+
+              <div class="setting-labels">
               <label for="ftype">Font Type:</label><br>
               <select id="ftype" name="ftype">
                 <option value="helvetica">Helvetica</option>
-                <!-- Add other font options here -->
+                <option value="arial">Arial</option>
+                <option value="times-new-roman">Times New Roman</option>
+                <option value="verdana">Verdana</option>
+                <option value="georgia">Georgia</option>
+                <option value="courier-new">Courier New</option>
+                <option value="trebuchet-ms">Trebuchet MS</option>
+                <option value="palatino">Palatino</option>
+                <option value="impact">Impact</option>
+                <option value="garamond">Garamond</option>
+                <option value="bookman">Bookman</option>
               </select><br>
+              </div>
+
+              <div class="setting-labels">
               <label for="lang">Language:</label><br>
               <input type="text" id="lang" name="lang" value="English"><br>
-              <input type="submit" value="Edit Preferences" style="margin-top:100px">
+            </div>
+
+              <input type="submit" value="Edit Preferences" style="background-color: rgba(30, 54, 192, 0.442);margin-top:50px;">
             </form>
         </article>
     </div>
