@@ -48,6 +48,7 @@
         <div id="videoElement"></div>
         <div id="label-container"></div>
         <div id="label-container2"></div>
+        <button id="deleteButton" style="margin-top: 10px;visibility:hidden; background-color: rgba(30, 54, 192, 0.127);">Delete Last Letter</button>
 
         <iframe src="../Pages/slide.html" width="400" height="400" frameborder="0" style="width: 100%; height: 220px;"></iframe>
 
@@ -108,7 +109,8 @@
     
                     labelContainer = document.getElementById("label-container");
                     labelContainer2 = document.getElementById("label-container2");
-
+                    delete_Button = document.getElementById("deleteButton");
+                    delete_Button.style.visibility = "visible";
                     for (let i = 0; i < maxPredictions; i++) { // and class labels
                         labelContainer.appendChild(document.createElement("div"));
                     }
@@ -190,8 +192,23 @@
         
         sequence = "";
 
-        document.addEventListener("DOMContentLoaded", init);
-
+        //document.addEventListener("DOMContentLoaded", init);
+        document.addEventListener("DOMContentLoaded", function () {
+            init();
+        
+            const deleteButton = document.getElementById("deleteButton");
+            deleteButton.addEventListener("click", function () {
+                // Get the content of label-container2
+                let labelContent = labelContainer2.innerHTML;
+        
+                // Check if there's content to delete
+                if (labelContent.length > 0) {
+                    // Remove the last character from label-container2
+                    labelContainer2.innerHTML = labelContent.slice(0, -1);
+                }
+            });
+        });
+        
         </script>
 
     </div>
