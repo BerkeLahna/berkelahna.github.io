@@ -71,6 +71,23 @@
                     </div>
                 
                     <input type="submit" value="Save Changes" style="background-color: rgba(30, 54, 192, 0.442);margin-top:50px;">
+                    <script>
+                        // Function to get URL parameters by name
+                        function getUrlParameter(name) {
+                            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                            var results = regex.exec(location.search);
+                            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+                        }
+        
+                        // Get the username parameter from the URL
+                        var username = getUrlParameter('username');
+        
+                        // Use the username to display the welcome message
+                        var welcomeMessage = document.createElement("h2");
+                        welcomeMessage.innerHTML = "Welcome to Gesture Guide, " + username + ":";
+                        document.getElementById("fname").value = username;
+                    </script>
                 </form>
         </article>
     </div>

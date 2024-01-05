@@ -62,9 +62,10 @@
 }
 
 
-input[type="submit"],button {
+input[type="submit"],button,input[type="text"],input[type="password"] {
     color: #fcfcfc !important;
 }
+
 
 button:hover {
     box-shadow: inset 0 0 0 2px #18bfef;
@@ -75,3 +76,4 @@ button:hover {
     visibility: hidden;
     margin-bottom: 10px;
 }
+

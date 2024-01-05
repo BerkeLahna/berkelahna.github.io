@@ -1,101 +1,70 @@
 <!DOCTYPE HTML>
-<!--
-	TEST by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
-	<head>
-		<meta http-equiv="refresh" content="0; URL='Pages/index.html'" />
-	</head>
-	<head>
-        <title>Login</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="/assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+    <title>Login</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="../assets/css/mobile_css.css" />
+    <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+</head>
+<style>@media screen and (max-width: 736px) {
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    #navPanelToggle {
+     visibility: hidden;
+    }
+    #navPanel{
+        visibility: hidden;
+    }
+}</style>
+<body class="is-preload">
 
-			<!-- Header -->
-			<header id="header">
-					</header>
+    <div id="wrapper">
 
-				<!-- Nav -->
-					<nav id="nav">
-	
-						<ul class="icons">
-							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
-							<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
-							<!-- <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> -->
-							<li><a href="https://github.com/BerkeLahna/berkelahna.github.io" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
 
-				<!-- Main -->
-					<div id="main">
+        <div id="main" style="margin-top: 50px;padding:20px;background-color: #00aaff52;">
+            <div class="login-container">
+                <h2 style="color: wheat;">Login</h2>
+                <form id="login-form">
+                    <div class="input-group">
+                        <label for="username"style="color: white;">Username:</label>
+                        <input type="text" id="username" name="username" required > 
+                    </div>
+                    <div class="input-group" style="margin-top: 10px; margin-bottom:20px;">
+                        <label for="password"style="color: white;">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <!-- Use button type="button" to prevent form submission -->
+                    <button type="button" style="margin-top:10px" onclick="authenticate()">Login</button>
+                    <button type="submit" style="margin-top:10px">Sign-in</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-                        </head>
-                        <body>
-                            <head>
-                                <meta charset="UTF-8">
-                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                <title>Login</title>
-                              </head>
-                              <body>
-                                <div class="login-container">
-                                  <h2 >Login</h2>
-                                  <form id="login-form">
-                                    <div class="input-group">
-                                      <label for="username">Username:</label>
-                                      <input type="text" id="username" name="username" required>
-                                    </div>
-                                    <div class="input-group">
-                                      <label for="password">Password:</label>
-                                      <input type="password" id="password" name="password" required>
-                                    </div>
-                                    <button type="submit" style="margin-top:10px"  onclick="authenticate()">Login</button>
-                                    <button type="submit" style="margin-top:10px">Sign-in</button>
-                                  </form>
-                                </div>
-                              </body>
-							  <script>
-								function authenticate() {
-									var username = document.getElementById('username').value;
-									var password = document.getElementById('password').value;
-						
-									// Replace these with your hardcoded usernames and passwords
-									var validUsers = {
-										"berke": "123"
-									};
-						
-									// Check if the provided credentials match
-									if (validUsers[username] === password) {
-									//	window.location.href = "Pages/index.html"; // Change the URL as needed
+    <!-- Scripts -->
+    <script>
+        function authenticate() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
 
-										// Redirect or perform actions for successful login
-									} else {
-										alert("Invalid username or password");
-									}
-								}
-							</script>
-						
-						    <!-- Copyright -->
-							<div id="copyright">
-							</div>
-						</div>
+            var validUsers = {
+                "berke": "123"
+            };
 
-						<!-- Scripts -->
-						<script src="../assets/js/jquery.min.js"></script>
-						<script src="../assets/js/jquery.scrollex.min.js"></script>
-						<script src="../assets/js/jquery.scrolly.min.js"></script>
-						<script src="../assets/js/browser.min.js"></script>
-						<script src="../assets/js/breakpoints.min.js"></script>
-						<script src="../assets/js/util.js"></script>
-						<script src="../assets/js/main.js"></script>
-						</body>
-                        </html>
-
+            if (validUsers.hasOwnProperty(username) && validUsers[username] === password) {
+				window.location.href = "welcome.html?username=" + username;
+            } else {
+                alert("Invalid username or password");
+            }
+        }
+    </script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
