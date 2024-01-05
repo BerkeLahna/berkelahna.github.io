@@ -90,7 +90,7 @@
                 const URL2= " https://teachablemachine.withgoogle.com/models/BqOPxNTyK/";
 
 
-            let model, webcam, labelContainer, maxPredictions, count=60;
+            let model, webcam, labelContainer, maxPredictions, count=30;
             let currentModelURL = URL; // Define a global variable to hold the current model URL
 
             async function changeModel(selectedModel) {
@@ -109,13 +109,25 @@
             function  write_Letter(letter){
                 if (letter=="Unsure" || letter=="Empty")
                 {
-                    if(count <=50)
-                    count += 10;
+                    if(count <=20)
+                    count += 2;
                 }
                 count--;
+                if(count == 0 && letter =="SMS"){
+                    AndroidInterface.performAction("SMS");
+                    count = 30;
+                }               
+                 if(count == 0 && letter =="CALL"){
+                    AndroidInterface.performAction("CALL");
+                    count = 30;
+                }
+                if(count == 0 && letter =="CALENDAR"){
+                    AndroidInterface.performAction("CALENDAR");
+                    count = 30;
+                }
                 if(count == 0){
                     labelContainer2.innerHTML += letter;
-                    count = 60;
+                    count = 30;
                 }
             }
             // Load the image model and setup the webcam
