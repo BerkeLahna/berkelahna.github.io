@@ -31,7 +31,7 @@
    <nav id="nav" >
         <ul class="links">
             <div class ="mobile-bar" >
-                <h3>Gesture Guide</h3>
+                <h3><a href="welcome.html">Gesture Guide</a></h3>
   </div>
             <li><a style="margin-top: 50px"></a></li>
             <li><a href="mobile_model.html" >Interpreter</a></li>
@@ -84,10 +84,13 @@
                     <input type="submit" value="Save Changes" style="background-color: rgba(30, 54, 192, 0.442);margin-top:100px;">
                     <script>
   
-                        var isLoggedIn = localStorage.getItem('loggedInUser');
+                        
 
-                        document.getElementById("fname").value = isLoggedIn;
-                        document.getElementById("email").value = isLoggedIn + "@stanford.edu";
+                        document.getElementById("fname").value = localStorage.getItem('loggedInUser');
+                        document.getElementById("lname").value = localStorage.getItem('surname');
+                        document.getElementById("lang").value = localStorage.getItem('language');
+                        document.getElementById("dob").value = localStorage.getItem('birthday');
+                        document.getElementById("email").value = localStorage.getItem('email');
 
                     </script>
 

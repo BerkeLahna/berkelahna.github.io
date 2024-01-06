@@ -56,19 +56,26 @@
         function authenticate() {
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
-
+        
             var validUsers = {
-                "berke": "123"
+                "123": ["berke", "Lahna","English","05.10.2001","berke.lahna@tedu.tr"]
             };
-
-            if (validUsers.hasOwnProperty(username) && validUsers[username] === password) {
+        
+            if (validUsers.hasOwnProperty(password) && validUsers[password][0] === username) {
                 // Store the username in localStorage to remember the login
                 localStorage.setItem('loggedInUser', username);
+                localStorage.setItem('surname', validUsers[password][1]);
+                localStorage.setItem('language', validUsers[password][2]);
+                localStorage.setItem('birthday', validUsers[password][3]);
+                localStorage.setItem('email', validUsers[password][4]);
+
+
                 window.location.href = "welcome.html";
             } else {
                 alert("Invalid username or password");
             }
         }
+        
     </script>
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/jquery.scrollex.min.js"></script>
