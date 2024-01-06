@@ -2,7 +2,17 @@
 <html>
 <head>
     <title>Hand Gesture</title>
+    <script>
+        // Check if the user is logged in when the page loads
+        window.addEventListener('load', function() {
+            var isLoggedIn = localStorage.getItem('loggedInUser');
 
+            // If the user is logged in, redirect to the appropriate page
+            if (!isLoggedIn) {
+                window.location.href = "login.html";
+            }
+        });
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
@@ -42,7 +52,7 @@
             <li><a href="sign_language_alphabet.html">Help</a></li>
 
             
-            <button style="position: absolute; bottom: 20px; right: 5px;" onclick="logout()">Log out</button>
+            <button class="log-out_b"  onclick="localStorage.removeItem('loggedInUser'); window.location.href = 'login.html';">Log out</button>
          
         </ul>
 
@@ -261,14 +271,7 @@
         });
         
         </script>
-<script>// Implement logout functionality
-    function logout() {
-        // Clear the logged-in status from localStorage
-        localStorage.removeItem('isLoggedIn');
-        // Redirect the user to the login page
-        window.location.href = "login.html"; // Replace with your login page URL
-    }
-    </script>
+
     </div>
 
     <!-- Copyright -->

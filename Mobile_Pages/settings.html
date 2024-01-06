@@ -2,7 +2,18 @@
 <html>
 <head>
     <title>Hand Gesture</title>
+    <script>
 
+        // Check if the user is logged in when the page loads
+        window.addEventListener('load', function() {
+            var isLoggedIn = localStorage.getItem('loggedInUser');
+
+            // If the user is logged in, redirect to the appropriate page
+            if (!isLoggedIn) {
+                window.location.href = "login.html";
+            }
+        });
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
@@ -29,7 +40,7 @@
             <li><a href="sign_language_alphabet.html">Help</a></li>
 
          
-            <button style="position: absolute; bottom: 20px; right: 5px;" onclick="localStorage.removeItem('loggedInUser'); window.location.href = 'login.html';">Log out</button>
+            <button  class="log-out_b"  onclick="localStorage.removeItem('loggedInUser'); window.location.href = 'login.html';">Log out</button>
          
         </ul>
 
@@ -46,9 +57,10 @@
             <h3>Preferences</h3>
 
             <form>
+                <div class="setting-labels">
               <label for="fsize">Font Size:</label><br>
-              <input type="range" id="fsize" name="fsize" style="background-color:rgb(8, 0, 255); height:4px;"><br>
-
+              <input type="range" id="fsize" name="fsize" style="background-color:rgba(8, 0, 255, 0.216); height:4px; width:300px;"><br>
+            </div>
               <div class="setting-labels">
               <label for="ftype">Font Type:</label><br>
               <select id="ftype" name="ftype">
@@ -71,7 +83,7 @@
               <input type="text" id="lang" name="lang" value="English"><br>
             </div>
 
-              <input type="submit" value="Edit Preferences" style="background-color: rgba(30, 54, 192, 0.442);margin-top:100px;">
+              <input type="submit" value="Edit Preferences" style="background-color: rgba(30, 54, 192, 0.442);margin-top:100px; ">
             </form>
         </article>
     </div>
