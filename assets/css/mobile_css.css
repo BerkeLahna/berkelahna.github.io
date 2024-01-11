@@ -1,7 +1,8 @@
 @media screen and (max-width: 500px) {
-
+}
     #navPanel {
         color: #ffffff;
+            width: 70%;
         /* background-color: #2f7b25a3; */
         /* background-color: #257b7ba3; */
         background-color: #247294a3;
@@ -9,18 +10,22 @@
 
     }
 
-
+    
 
 #navPanel ul.links li.active a {
 
     color: wheat !important;
-    font-size: +1.5em;
+    font-size: 2.5rem !important;
 }
  
     li a{
         color: #ffffff;
-    }
+        font-size: 2rem !important;
+
+            }
     h3{
+        font-size: 2.5rem !important;
+
         color: #ffffff;
     }
     #main{
@@ -78,7 +83,7 @@
  
  
 
-}
+
 
 .profile-labels,.setting-labels{
     color:wheat;
@@ -89,13 +94,29 @@
 input[type="submit"],button,input[type="text"],input[type="password"] {
     color: #fcfcfc !important;
 }
+input[type="text"]{
+    font-size: 1.5rem;
+}
 
 input[type="submit"]{
     width:80%;
 }
+div.profile-labels label,div.setting-labels label{
+    font-size: 1.5rem;
+}
+
 a.redirect_w{
     color: #ffffff ;
 }
+button.editPref,button.SaveChanges{
+    font-size: 2rem;
+    width:300px; 
+    height:50px;
+    margin-bottom: 20px;
+    border-radius: 5%;
+    box-shadow: inset 0 0 0 2px #000000;
+} 
+
 button.redirect_w{
     font-size: 2rem;
     width:300px; 
@@ -117,11 +138,13 @@ button:hover {
 }
 
 button.log-out_b{
-    box-shadow: inset 0 0 0 2px rgba(0, 174, 255, 0.337);
-    color: #ff00007b;
+    box-shadow: inset 0 0 0 5px rgba(0, 174, 255, 0.337);
     position: absolute; 
     bottom: 20px;
     right: 5px;
+    width:150px; 
+    height:75px;
+    font-size: 1.5rem;
 }
 .profile-labels label{
     text-align: left;

@@ -31,7 +31,7 @@
 </head>
 <body class="is-preload">
     <div id="wrapper">
-        <div id="main" style="margin-top: 50px;padding:20px;animation: moveBackground 1000s linear infinite;">
+        <div id="main" style="margin-top: 75px;animation: moveBackground 1000s linear infinite;">
             <div class="login-container">
                 <h2 style="color: wheat;">Login</h2>
                 <form id="login-form">
@@ -58,10 +58,12 @@
             var password = document.getElementById('password').value;
         
             var validUsers = {
-                "123": ["berke", "Lahna","English","05.10.2001","berke.lahna@tedu.tr"]
+                "123": ["berke", "Lahna","English","05.10.2001","berke.lahna@tedu.tr"],
+                "1234": ["ceyhun", "Toker","English","05.10.2000","ceyhun.toker@tedu.tr"]
+
             };
         
-            if (validUsers.hasOwnProperty(password) && validUsers[password][0] === username) {
+            if (validUsers.hasOwnProperty(password) && validUsers[password][0].toLowerCase() === username.toLowerCase()) {
                 // Store the username in localStorage to remember the login
                 localStorage.setItem('loggedInUser', username);
                 localStorage.setItem('surname', validUsers[password][1]);
