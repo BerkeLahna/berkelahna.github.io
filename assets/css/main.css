@@ -1345,6 +1345,16 @@ input, select, textarea {
 			animation: slidein3 0.5s linear;  
 		
 		} 
+		.logo-container2:hover {
+
+			transform: scale(1.25);   
+		}
+		
+		.logo-container2 {
+
+			animation: slidein 0.5s linear;  
+		
+		} 
 
 		.logo-container1 {
 
